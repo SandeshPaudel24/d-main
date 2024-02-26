@@ -21,6 +21,5 @@ def submit(request):
 
 def delete(request, todo_id):
     todo_id = todos.objects.get(id=todo_id)
-    # del todo_id()
     todo_id.delete()
     return redirect("submit")
