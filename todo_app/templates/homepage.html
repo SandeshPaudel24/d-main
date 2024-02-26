@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Franklin:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="text-center text-light my-4">
+        <h1 class="mb-4" style="color: red;">Todo List</h1>
+      </header>
+      <form action="{% url 'submit' %}" method="post" >
+        {% csrf_token %}
+        <label class="text-light">Add a new todo...</label>
+        <input class="form-control m-auto" type="text" name="todo_text" />
+        <br />
+        <div class="text-center">
+          <input type="submit" class="btn btn-light" />
+        </div>
+      </form>
+      <ul class="list-group todos mx-auto text-light delete">
+        {% for todo in i %}
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          <span>{{ todo.text_add }}</span>
+          <a href="{% url 'delete_todo' todo.id %}" class="delete"><button>delete</button>
+            <i class="far fa-trash-alt"></i>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
